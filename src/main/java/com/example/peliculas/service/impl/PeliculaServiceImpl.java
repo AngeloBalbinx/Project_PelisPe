@@ -3,11 +3,13 @@ package com.example.peliculas.service.impl;
 import com.example.peliculas.entities.Pelicula;
 import com.example.peliculas.repository.PeliculaRepository;
 import com.example.peliculas.service.PeliculaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class PeliculaServiceImpl implements PeliculaService {
+    @Autowired
     private PeliculaRepository repoPeli;
     @Override
     public void save(Pelicula pelicula) {

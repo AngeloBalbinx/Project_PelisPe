@@ -20,6 +20,7 @@ public class Pelicula implements Serializable {
     private Date fechaEstreno;
     @OneToOne
     private Genero genero;
+    @ManyToMany
     private List<Actor> protagonistas;
 
     public Long getId() {

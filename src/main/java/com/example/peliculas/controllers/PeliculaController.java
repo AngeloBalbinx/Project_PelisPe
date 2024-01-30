@@ -5,10 +5,12 @@ import com.example.peliculas.entities.Pelicula;
 import com.example.peliculas.service.ActorService;
 import com.example.peliculas.service.GeneroService;
 import com.example.peliculas.service.PeliculaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
@@ -43,7 +45,14 @@ public class PeliculaController {
         return "pelicula";
     }
     @PostMapping
-    public String guardar(Pelicula pelicula, @ModelAttribute String ids){
+    public String guardar(@Valid Pelicula pelicula, BindingResult br, @ModelAttribute(name="ids") String ids, Model model){
+        if(br.hasErrors()){
+            model.addAttribute("titulo","Nueva Película");
+            model.addAttribute("generos",generoService.findAll());
+            model.addAttribute("actores",actorService.findAll());
+            return"pelicula";
+        }
+
         List<Long> idsProtagonistas = Arrays.stream(ids.split(",")).map(Long::parseLong).collect(Collectors.toList());
         List<Actor> protagonistas = actorService.findAllById(idsProtagonistas);
         pelicula.setProtagonistas(protagonistas);
@@ -51,7 +60,10 @@ public class PeliculaController {
         return "redirect:peliculas/home";
     }
     @GetMapping({"/","/home","/index"})
-        public String home(){
+        public String home(Model model){
+        model.addAttribute("peliculas",peliculaService.findAll());
+        model.addAttribute("msj","Catálogo actualizado a 2024");
+        model.addAttribute("tipoMsj","success");
         return "home";
     }
 

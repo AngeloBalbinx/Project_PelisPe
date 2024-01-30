@@ -1,4 +1,5 @@
-<header>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:genero="http://www.w3.org/1999/xhtml">
+<header th:fragment="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">PelisPe</a>
@@ -8,13 +9,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/peliculas/home">Catálogo</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Peliculas</a>
+                        <a class="nav-link" href="/peliculas">Nueva Película</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listado">Administrar</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div th:if="${msj} != null" th:text="${msj}" th:class="${tipoMsj !=null ? 'alert alert-' + tipoMsj : 'alert'}">
+
+    </div>
 </header>
+</html>

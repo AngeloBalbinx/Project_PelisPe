@@ -1,8 +1,9 @@
 package com.example.peliculas.repository;
 
 import com.example.peliculas.entities.Pelicula;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PeliculaRepository extends CrudRepository<Pelicula,Long> {
+
+public interface PeliculaRepository extends JpaRepository<Pelicula,Long> {
 
 }

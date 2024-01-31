@@ -4,6 +4,8 @@ import com.example.peliculas.entities.Pelicula;
 import com.example.peliculas.repository.PeliculaRepository;
 import com.example.peliculas.service.PeliculaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +26,11 @@ public class PeliculaServiceImpl implements PeliculaService {
     @Override
     public List<Pelicula> findAll() {
         return (List<Pelicula>) repoPeli.findAll();
+    }
+
+    @Override
+    public Page<Pelicula> findAll(Pageable pageable) {
+        return repoPeli.findAll(pageable);
     }
 
     @Override

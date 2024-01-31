@@ -72,6 +72,7 @@ public class PeliculaController {
         }
         if(!imagen.isEmpty()){
             String archivo = pelicula.getNombre()+ getExtension(imagen.getOriginalFilename());
+            archivo = archivo.replace(":", "_");
             pelicula.setImagen(archivo);
             try {
                 archivoService.guardar(archivo,imagen.getInputStream());
